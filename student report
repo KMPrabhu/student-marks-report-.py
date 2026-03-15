@@ -1,0 +1,73 @@
+records = []
+
+def calculate_grade(percentage):
+    if percentage >= 90:
+        return "A+"
+    elif percentage >= 80:
+        return "A"
+    elif percentage >= 70:
+        return "B"
+    elif percentage >= 60:
+        return "C"
+    elif percentage >= 50:
+        return "D"
+    else:
+        return "F"
+
+def student_marks():
+    print("====== STUDENT MARKS CARD SYSTEM ======")
+
+    num_students = int(input("Enter number of students: "))
+
+    for i in range(num_students):
+        print(f"\n----- Student {i+1} Details -----")
+
+        name = input("Enter student name: ")
+        roll = input("Enter roll number: ")
+
+        subjects = ["Python", "Maths", "Physics", "Chemistry", "English"]
+        marks = []
+
+        for subject in subjects:
+            m = int(input(f"Enter marks for {subject}: "))
+            marks.append(m)
+
+        total = sum(marks)
+        percentage = total / len(subjects)
+
+        grade = calculate_grade(percentage)
+
+        if percentage >= 40:
+            result = "PASS"
+        else:
+            result = "FAIL"
+
+        student_data = {
+            "Name": name,
+            "Roll": roll,
+            "Marks": marks,
+            "Total": total,
+            "Percentage": percentage,
+            "Grade": grade,
+            "Result": result
+        }
+
+        records.append(student_data)
+
+def display_report():
+    print("\n======= STUDENT REPORT =======")
+
+    for student in records:
+        print("\n----------------------------")
+        print("Name :", student["Name"])
+        print("Roll :", student["Roll"])
+        print("Marks :", student["Marks"])
+        print("Total :", student["Total"])
+        print("Percentage :", round(student["Percentage"],2))
+        print("Grade :", student["Grade"])
+        print("Result :", student["Result"])
+        print("----------------------------")
+
+# Main program
+student_marks()
+display_report()
